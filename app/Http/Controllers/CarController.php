@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Car;
+
 
 class CarController extends Controller
 {
@@ -11,9 +13,18 @@ class CarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        // $this->middleware('auth')->only('create', 'edit', 'store', 'update','destroy');
+         $this->middleware('auth')->except('index','show');
+    }
+
     public function index()
     {
-        //
+        return view('cars.index', [
+            'cars' => Car::latest('created_at')->paginate(5)
+        ]);
     }
 
     /**
@@ -23,7 +34,7 @@ class CarController extends Controller
      */
     public function create()
     {
-        //
+        return view('cars.create',[ 'car'=> new Car]);
     }
 
     /**
@@ -34,7 +45,8 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Car::create(request()->all());
+        return redirect()->route('cars.index');
     }
 
     /**
@@ -43,9 +55,11 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Car $car)
     {
-        //
+        return view('cars.show', [
+            'car' => $car
+        ]);
     }
 
     /**
@@ -54,9 +68,12 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Car $car)
     {
         //
+        return view('cars.edit', [
+            'car' => $car
+        ]);
     }
 
     /**
@@ -66,9 +83,10 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Car $car , Request $request)
     {
-        //
+        $car->update(request()->all());
+        return redirect()->route('cars.show', $car);
     }
 
     /**
@@ -77,8 +95,9 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Car $car)
     {
-        //
+        $car->delete();
+        return redirect()->route('cars.index');
     }
 }

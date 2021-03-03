@@ -20,3 +20,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('vehicle', 'CarController')->names('cars')->parameters(['vehicle'=>'car']);
+// cars.store
+// cars.create
+// cars.show
+// cars.update
+// cars.destroy
+// cars.edit
+// cars.index
