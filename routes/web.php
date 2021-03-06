@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Auth::routes();
 
@@ -28,4 +28,22 @@ Route::resource('vehicle', 'CarController')->names('cars')->parameters(['vehicle
 // cars.update
 // cars.destroy
 // cars.edit
-// cars.index
+// cars.indexAuth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+
+Route::group(['middleware' => 'auth'], function () {
+	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
+	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
+	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+});
+
+Route::group(['namespace' => 'Maintenance', 'prefix' => 'maintenance'], function () {
+	Route::prefix('brand')->group(function () {
+		Route::get('/', 'BrandController@index')->name('maint.brand.index');
+	});
+
+	Route::prefix('model')->group(function () {
+		Route::get('/', 'ModelController@index')->name('maint.model.index');
+	});
+});
