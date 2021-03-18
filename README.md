@@ -1,3 +1,21 @@
+INSTALL
+
+CREATE DATABASE kavak;
+GRANT ALL ON kavak.* TO 'root'@'localhost' IDENTIFIED BY '' WITH GRANT OPTION;
+cd /var/www
+git clone https://github.com/nestorcodes/kavak.com.git
+cd kavak.com
+cp .env.example .env
+notepad .env
+php artisan config:cache
+php artisan config:clear
+composer install
+npm install
+npm run dev
+php artisan migrate
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
