@@ -1,18 +1,18 @@
-INSTALL
+INSTALL PROJECT
 
-CREATE DATABASE kavak;
-GRANT ALL ON kavak.* TO 'root'@'localhost' IDENTIFIED BY '' WITH GRANT OPTION;
-cd /var/www
-git clone https://github.com/nestorcodes/kavak.com.git
-cd kavak.com
-cp .env.example .env
-notepad .env
-php artisan config:cache
-php artisan config:clear
-composer install
-npm install
-npm run dev
-php artisan migrate
+- CREATE DATABASE kavak;
+- GRANT ALL ON kavak.* TO 'root'@'localhost' IDENTIFIED BY '' WITH GRANT OPTION;
+- cd /var/www
+- git clone https://github.com/nestorcodes/kavak.com.git
+- cd kavak.com
+- cp .env.example .env
+- notepad .env
+- php artisan config:cache
+- php artisan config:clear
+- composer install
+- npm install
+- npm run dev
+- php artisan migrate
 
 
 
