@@ -1,4 +1,4 @@
-INSTALL PROJECT
+INSTALL PROJECT (Using Laragon)
 
 - CREATE DATABASE kavak;
 - GRANT ALL ON kavak.* TO 'root'@'localhost' IDENTIFIED BY '' WITH GRANT OPTION;
@@ -6,13 +6,14 @@ INSTALL PROJECT
 - git clone https://github.com/nestorcodes/kavak.com.git
 - cd kavak.com
 - cp .env.example .env
-- notepad .env
+- notepad .env (add access to db)
 - php artisan config:cache
 - php artisan config:clear
 - composer install
 - npm install
 - npm run dev
 - php artisan migrate
+- if required, php artisan key:generate, to generate an app key.
 
 
 
