@@ -47,3 +47,10 @@ Route::group(['namespace' => 'Maintenance', 'prefix' => 'maintenance'], function
 		Route::get('/', 'ModelController@index')->name('maint.model.index');
 	});
 });
+
+//Cart
+Route::get('/cart', 'CartController@cart')->name('cart.index');
+Route::post('/cartadd', 'CartController@add')->name('cart.store');
+Route::post('/cartupdate', 'CartController@update')->name('cart.update');
+Route::post('/cartremove', 'CartController@remove')->name('cart.remove');
+Route::post('/cartclear', 'CartController@clear')->name('cart.clear');
