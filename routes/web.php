@@ -38,6 +38,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
 
+Route::group(['prefix' => 'car'], function () {
+   Route::get('list', 'CarController@DTLoad')->name('vehicle.list');
+});
+
 Route::group(['namespace' => 'Maintenance', 'prefix' => 'maintenance'], function () {
 	Route::prefix('brand')->group(function () {
 		Route::get('/', 'BrandController@index')->name('maint.brand.index');

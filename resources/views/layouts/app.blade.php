@@ -19,6 +19,7 @@
     <style>
         .content { padding-top: 0.1em !important; }
     </style>
+    @yield('styles')
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()

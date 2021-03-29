@@ -11,5 +11,14 @@ const mix = require('laravel-mix');
  |
  */
 
+const assets = 'public/vendor/';
+const vendor = 'node_modules/';
+const lib = {
+    'paginationjs': vendor + 'paginationjs/dist/',
+};
+
+mix.copy(lib.paginationjs + 'pagination.css', assets + 'paginationjs/css/');
+mix.copy(lib.paginationjs + 'pagination.min.js', assets + 'paginationjs/js/');
+
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');

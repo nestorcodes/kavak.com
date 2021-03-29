@@ -3,44 +3,81 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Car;
 
+use App\Logic\Car as CarLogic;
 
 class CarController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
     public function __construct()
     {
-        // $this->middleware('auth')->only('create', 'edit', 'store', 'update','destroy');
-         $this->middleware('auth')->except('index','show');
+        $this->middleware('auth')->except('index','show');
     }
 
+    /**
+     * Vista de Listado de Vehiculos
+     * @return View
+     */
     public function index()
     {
-        return view('cars.index', [
-            'cars' => Car::latest('created_at')->paginate(5)
+        return view('cars.index');
+    }
+
+    /**
+     * Vista de Formulario de Creación de Vehiculos
+     * @return View
+     */
+    public function create()
+    {
+        return view('cars.create');
+    }
+
+    /**
+     * Vista de Detalles de Vehiculo
+     * @return View
+     */
+    public function show(CarLogic $car)
+    {
+        return view('cars.show', [
+            'car' => $car
         ]);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Vista de Formulario de Edición de Vehiculo
+     * @return View
      */
-    public function create()
+    public function edit(CarLogic $car)
     {
-        return view('cars.create',[ 'car'=> new Car]);
+        return view('cars.edit', [
+            'car' => $car
+        ]);
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
+     * Listado de Vehiculos
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function DTLoad(Request $request)
+    {
+        $Query = CarLogic::getList();
+
+        $page = (int) $request->input('pageNumber') - 1;
+        $size = (int) $request->input('pageSize');
+
+
+        $response = [
+            'total_items' => count($Query->get()),
+            'items' => $Query->skip($page * $size)->take($size)->get(),
+            'sql' => $Query->toSql()
+        ];
+
+        return Response()->json($response, 200);
+    }
+
+    /**
+     * Guarda el vehiculo
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -50,48 +87,19 @@ class CarController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
+     * Actualiza el vehiculo
      * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Car $car)
-    {
-        return view('cars.show', [
-            'car' => $car
-        ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Car $car)
-    {
-        //
-        return view('cars.edit', [
-            'car' => $car
-        ]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function update(Car $car , Request $request)
     {
-        $car->update(request()->all());
+        $car->update($request->all());
         return redirect()->route('cars.show', $car);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
+     * Elimina el vehiculo
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
