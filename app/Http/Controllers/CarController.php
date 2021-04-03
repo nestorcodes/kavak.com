@@ -69,7 +69,6 @@ class CarController extends Controller
         $response = [
             'total_items' => count($Query->get()),
             'items' => $Query->skip($page * $size)->take($size)->get(),
-            'sql' => $Query->toSql()
         ];
 
         return Response()->json($response, 200);
