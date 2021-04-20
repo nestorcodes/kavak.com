@@ -24,7 +24,7 @@ class CCarStructure extends Migration
             $t->id();
             $t->string('name');
             $t->unsignedBigInteger('brand_id');
-            
+
             $t->foreign('brand_id')->references('id')->on('car_brands')->onDelete('cascade');
         });
 
@@ -34,7 +34,7 @@ class CCarStructure extends Migration
             $t->unsignedBigInteger('model_id');
             $t->unsignedBigInteger('creator_id');
             $t->unsignedBigInteger('buyer_id')->nullable();
-            $t->double('price')->default(0);
+            $t->decimal('price')->default(0);
             $t->unsignedInteger('transmission')->nullable();
             $t->string('motor')->nullable();
             $t->string('traction')->nullable();
@@ -50,10 +50,8 @@ class CCarStructure extends Migration
         });
 
         Schema::create('user_favorite_cars', function (Blueprint $t) {
-            $t->id();
             $t->unsignedBigInteger('user_id');
             $t->unsignedBigInteger('car_id');
-            $t->timestamps();
 
             $t->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $t->foreign('car_id')->references('id')->on('cars')->onDelete('cascade');

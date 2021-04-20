@@ -2,5 +2,8 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/vendor/paginationjs/css/pagination.css": "/vendor/paginationjs/css/pagination.css",
-    "/vendor/paginationjs/js/pagination.min.js": "/vendor/paginationjs/js/pagination.min.js"
+    "/vendor/paginationjs/js/pagination.min.js": "/vendor/paginationjs/js/pagination.min.js",
+    "/vendor/toastr/js/toastr.min.js": "/vendor/toastr/js/toastr.min.js",
+    "/vendor/toastr/js/toastr.js.map": "/vendor/toastr/js/toastr.js.map",
+    "/vendor/toastr/css/toastr.min.css": "/vendor/toastr/css/toastr.min.css"
 }

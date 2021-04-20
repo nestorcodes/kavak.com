@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 use App\Logic\Car as CarLogic;
 use App\User;
@@ -12,7 +13,7 @@ class CarController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('index','show');
+        $this->middleware('auth')->except('index','show', 'DTLoad');
     }
 
     /**
@@ -108,5 +109,32 @@ class CarController extends Controller
     {
         $car->delete();
         return redirect()->route('cars.index');
+    }
+
+    public function setFavorite(Request $request)
+    {
+        $Validator = Validator::make($request->all(), [
+            'car' => 'required|integer|min:1',
+            'status' => 'required|integer',
+        ], [
+            'car.required' => 'El vehiculo es requerido',
+            'car.integer'  => 'El ID del vehiculo es un entero',
+            'status.required' => 'El Estado es requerido',
+            'status.integer'  => 'El Estado es un entero'
+        ]);
+
+        if (!$Validator->fails()) {
+            $Car = CarLogic::find($request->input('car'));
+
+            if (isset($Car->id)) {
+                $Car->setFavorite((bool) $request->input('status'));
+
+                return Response()->json(['m' => 'Vehiculo actualizado'], 200);
+            }
+
+            return Response()->json(['m' => 'No existe un vehiculo con ese ID'], 422);
+        }
+
+        return Response()->json(['errors' => $Validator->errors()], 422);
     }
 }
