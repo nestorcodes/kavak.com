@@ -22,5 +22,12 @@
         "sass-loader": "^8.0.0",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.3",
+        "datatables.net-bs4": "^1.10.24",
+        "gasparesganga-jquery-loading-overlay": "^2.1.7",
+        "paginationjs": "^2.1.5",
+        "toastr": "^2.1.4"
     }
 }

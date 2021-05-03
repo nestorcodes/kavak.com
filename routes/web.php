@@ -38,13 +38,30 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
 
+Route::group(['prefix' => 'car'], function () {
+   Route::get('list', 'CarController@DTLoad')->name('vehicle.list');
+   Route::post('favorite', 'CarController@setFavorite')->name('vehicle.favorite');
+});
+
 Route::group(['namespace' => 'Maintenance', 'prefix' => 'maintenance'], function () {
 	Route::prefix('brand')->group(function () {
 		Route::get('/', 'BrandController@index')->name('maint.brand.index');
+
+        Route::post('/load', 'BrandController@load')->name('maint.brand.load');
+        Route::get('/get', 'BrandController@get')->name('maint.brand.get');
+        Route::post('/create', 'BrandController@create')->name('maint.brand.create');
+        Route::post('/update', 'BrandController@update')->name('maint.brand.update');
+        Route::post('/delete', 'BrandController@delete')->name('maint.brand.delete');
 	});
 
 	Route::prefix('model')->group(function () {
 		Route::get('/', 'ModelController@index')->name('maint.model.index');
+
+        Route::post('/load', 'ModelController@load')->name('maint.model.load');
+        Route::get('/get', 'ModelController@get')->name('maint.model.get');
+        Route::post('/create', 'ModelController@create')->name('maint.model.create');
+        Route::post('/update', 'ModelController@update')->name('maint.model.update');
+        Route::post('/delete', 'ModelController@delete')->name('maint.model.delete');
 	});
 });
 
