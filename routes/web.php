@@ -38,6 +38,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
 
+Route::group(['prefix' => 'car'], function () {
+   Route::get('list', 'CarController@DTLoad')->name('vehicle.list');
+   Route::post('favorite', 'CarController@setFavorite')->name('vehicle.favorite');
+});
+
 Route::group(['namespace' => 'Maintenance', 'prefix' => 'maintenance'], function () {
 	Route::prefix('brand')->group(function () {
 		Route::get('/', 'BrandController@index')->name('maint.brand.index');
@@ -47,3 +52,10 @@ Route::group(['namespace' => 'Maintenance', 'prefix' => 'maintenance'], function
 		Route::get('/', 'ModelController@index')->name('maint.model.index');
 	});
 });
+
+//Cart
+Route::get('/cart', 'CartController@cart')->name('cart.index');
+Route::post('/cartadd', 'CartController@add')->name('cart.store');
+Route::post('/cartupdate', 'CartController@update')->name('cart.update');
+Route::post('/cartremove', 'CartController@remove')->name('cart.remove');
+Route::post('/cartclear', 'CartController@clear')->name('cart.clear');

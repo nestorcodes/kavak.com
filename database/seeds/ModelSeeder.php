@@ -12,69 +12,55 @@ class ModelSeeder extends Seeder
     public function run()
     {
         //chevrolet
-        DB::table('models')->insert([
-            'name' => 'Chevrolet Equinox LTZ',
-            'created_at' => now(),
-            'updated_at' => now()
+        DB::table('car_models')->insert([
+            'name' => 'Equinox LTZ',
+	    'brand_id' => 1,
         ]);
 
-        DB::table('models')->insert([
-            'name' => 'Chevrolet Aveo LS',
-            'created_at' => now(),
-            'updated_at' => now()
+        DB::table('car_models')->insert([
+            'name' => 'Aveo LS',
+	    'brand_id' => 1,
         ]);
 
-        DB::table('models')->insert([
-            'name' => 'Chevrolet Spark Hatch Back LTZ',
-            'created_at' => now(),
-            'updated_at' => now()
+        DB::table('car_models')->insert([
+            'name' => 'Spark Hatch Back LTZ',
+	    'brand_id' => 1,
         ]);
 
-        DB::table('models')->insert([
-            'name' => 'Chevrolet Cruze LS Turbo',
-            'created_at' => now(),
-            'updated_at' => now()
+        DB::table('car_models')->insert([
+            'name' => 'Cruze LS Turbo',
+	    'brand_id' => 1,
         ]);
 
-        DB::table('models')->insert([
-            'name' => 'Chevrolet Cavalier LS',
-            'created_at' => now(),
-            'updated_at' => now()
+        DB::table('car_models')->insert([
+            'name' => 'Cavalier LS',
+	    'brand_id' => 1,
         ]);
 
-        ///////////////////////////////////////////
         //Jeep
-        DB::table('models')->insert([
-            'name' => 'Jeep Cherokee Limited',
-            'created_at' => now(),
-            'updated_at' => now()
+        DB::table('car_models')->insert([
+            'name' => 'Cherokee Limited',
+	    'brand_id' => 2,
         ]);
 
-        DB::table('models')->insert([
-            'name' => 'Jeep Renegade Latitude',
-            'created_at' => now(),
-            'updated_at' => now()
+        DB::table('car_models')->insert([
+            'name' => 'Renegade Latitude',
+	    'brand_id' => 2,
         ]);
 
-        DB::table('models')->insert([
-            'name' => 'Jeep Compass Limited Premium',
-            'created_at' => now(),
-            'updated_at' => now()
+        DB::table('car_models')->insert([
+            'name' => 'Compass Limited Premium',
+	    'brand_id' => 2,
         ]);
 
-        DB::table('models')->insert([
-            'name' => 'Jeep Patriot Sport',
-            'created_at' => now(),
-            'updated_at' => now()
+        DB::table('car_models')->insert([
+            'name' => 'Patriot Sport',
+	    'brand_id' => 2,
         ]);
 
-        DB::table('models')->insert([
-            'name' => 'Jeep Wrangler Unlimited Sahara',
-            'created_at' => now(),
-            'updated_at' => now()
+        DB::table('car_models')->insert([
+            'name' => 'Wrangler Unlimited Sahara',
+	    'brand_id' => 2,
         ]);
-
-
-        
     }
 }
