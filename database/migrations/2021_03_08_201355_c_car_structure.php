@@ -24,6 +24,7 @@ class CCarStructure extends Migration
             $t->id();
             $t->string('name');
             $t->unsignedBigInteger('brand_id');
+            $t->timestamps();
 
             $t->foreign('brand_id')->references('id')->on('car_brands')->onDelete('cascade');
         });

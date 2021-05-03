@@ -18,6 +18,8 @@
     <link href="{{ asset('material') }}/demo/demo.css" rel="stylesheet" />
     <link href="{{ asset('vendor') }}/fontawesome/css/all.min.css" rel="stylesheet" />
     <link href="{{ asset('vendor') }}/toastr/css/toastr.min.css" rel="stylesheet" />
+    <link href="{{ asset('vendor') }}/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
     <style>
         .content { padding-top: 0.1em !important; }
         .pt-6 {
@@ -86,6 +88,7 @@
             window.FontAwesomeConfig = { autoReplaceSvg: false }
         </script>
         <script src="{{ asset('vendor') }}/fontawesome/js/all.min.js"></script>
+        <script src="{{ asset('vendor') }}/datatables/js/dataTables.bootstrap4.min.js"></script>
         <script src="{{ asset('vendor') }}/overlay/js/loadingoverlay.min.js"></script>
         <script src="{{ asset('vendor') }}/toastr/js/toastr.min.js"></script>
 

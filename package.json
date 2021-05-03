@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.3",
+        "datatables.net-bs4": "^1.10.24",
         "gasparesganga-jquery-loading-overlay": "^2.1.7",
         "paginationjs": "^2.1.5",
         "toastr": "^2.1.4"
