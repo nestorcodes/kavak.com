@@ -39,7 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['prefix' => 'car'], function () {
-   Route::get('list', 'CarController@DTLoad')->name('vehicle.list');
+   Route::post('list', 'CarController@DTLoad')->name('vehicle.list');
    Route::post('favorite', 'CarController@setFavorite')->name('vehicle.favorite');
 });
 

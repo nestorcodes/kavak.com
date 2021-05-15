@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class UserFavoriteCar extends Model
 {
     protected $table = 'user_favorite_cars';
-
+    public $timestamps = false;
     protected $fillable = [
         'user_id',
         'car_id',

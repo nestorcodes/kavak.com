@@ -11,9 +11,12 @@ class Car extends Model
     protected $fillable = [
         'status_id',
         'model_id',
+        'type_id',
+        'year',
         'creator_id',
         'buyer_id',
         'price',
+        'color',
         'transmission',
         'motor',
         'traction',
@@ -21,6 +24,7 @@ class Car extends Model
         'horse_power',
         'gas_type',
         'seats',
+        'picture_uri',
         'created_at',
         'updated_at'
     ];

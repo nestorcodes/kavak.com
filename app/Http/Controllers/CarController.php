@@ -22,7 +22,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        return view('cars.index');
+        return view('cars.index', CarLogic::getViewParams());
     }
 
     /**
@@ -63,7 +63,9 @@ class CarController extends Controller
      */
     public function DTLoad(Request $request)
     {
-        $Query = CarLogic::getList();
+        $Filter = CarLogic::makeFilter($request->input('filter'));
+
+        $Query = CarLogic::getList($Filter);
 
         $page = (int) $request->input('pageNumber') - 1;
         $size = (int) $request->input('pageSize');
@@ -73,6 +75,10 @@ class CarController extends Controller
             'total_items' => count($Query->get()),
             'items' => $Query->skip($page * $size)->take($size)->get(),
         ];
+
+        $response['items']->each(function ($i) {
+            $i->trs = CarLogic::$transmission[$i->trs];
+        });
 
         return Response()->json($response, 200);
     }
