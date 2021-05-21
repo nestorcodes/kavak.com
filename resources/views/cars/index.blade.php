@@ -84,6 +84,24 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="form-group w-100">
+                                    <label for="filter-traction" class="control-label"><small>Tracción</small></label>
+                                    <select name="traction" id="filter-traction" class="form-control form-control-sm">
+                                        <option value="">Seleccione</option>
+                                        @foreach($tractions as $traction)
+                                            <option value="{{$traction->traction}}">{{$traction->traction}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group w-100">
+                                    <label for="filter-seats" class="control-label"><small>Asientos</small></label>
+                                    <select name="seats" id="filter-seats" class="form-control form-control-sm">
+                                        <option value="">Seleccione</option>
+                                        @foreach($seats as $seat)
+                                            <option value="{{$seat->seats}}">{{$seat->seats}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </form>
                         <div id="items" class="col-sm">

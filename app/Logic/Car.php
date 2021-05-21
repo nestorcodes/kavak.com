@@ -12,6 +12,8 @@ class Car extends CarModel
     {
         return [
             'years' => DB::table('cars')->selectRaw("distinct(cars.year) as year")->orderBy('year', 'desc')->get(),
+            'tractions' => DB::table('cars')->selectRaw("distinct(cars.traction) as traction")->orderBy('traction', 'asc')->get(),
+            'seats' => DB::table('cars')->selectRaw("distinct(cars.seats) as seats")->whereNotNull('seats')->orderBy('seats', 'asc')->get(),
             'types' => DB::table('car_types')->select('id', 'name', 'picture_uri')->orderBy('name', 'asc')->get(),
             'brands' => DB::table('car_brands')->select('id', 'name', 'picture_uri')->orderBy('name', 'asc')->get(),
             'models' => DB::table('car_models')->select('id', 'name', 'brand_id')->orderBy('name', 'asc')->get(),
@@ -55,6 +57,14 @@ class Car extends CarModel
 
         if (isset($filter['year'])) {
             $Query->where('cars.year', '=', $filter['year']);
+        }
+
+        if (isset($filter['seats'])) {
+            $Query->where('cars.seats', '=', $filter['seats']);
+        }
+
+        if (isset($filter['traction'])) {
+            $Query->where('cars.traction', '=', $filter['traction']);
         }
 
         return $Query;
